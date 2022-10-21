@@ -1,32 +1,39 @@
 function getComputerChoice() {
   let choices = ['rock', 'paper', 'scissors'];
-  let getChoice = choices[Math.floor(Math.random() * choices.length)];
-  return getChoice;
+  let computerSelection = choices[Math.floor(Math.random() * choices.length)];
+  return computerSelection;
 }
 
 function getPlayerChoice() {
-  const playerSelection = prompt('rock, paper or scissors?');
+  let playerSelection = prompt('rock, paper or scissors?');
   return playerSelection;
 }
 
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
+let playerSelection = getPlayerChoice();
+let computerSelection = getComputerChoice();
 
-function playRound(playerSelection, computerSelection) {
-  if (
+function getResult(playerSelection, computerSelection) {
+  if (playerSelection == computerSelection) {
+    return 'Tie';
+  } else if (
     (playerSelection == 'rock' && computerSelection == 'scissors') ||
     (playerSelection == 'scissors' && computerSelection == 'paper') ||
     (playerSelection == 'paper' && computerSelection == 'rock')
   ) {
-    console.log(`You won! ${playerSelection} beats ${computerSelection}`);
-  } else if (
-    (computerSelection == 'rock' && playerSelection == 'scissors') ||
-    (computerSelection == 'scissors' && playerSelection == 'paper') ||
-    (computerSelection == 'paper' && playerSelection == 'rock')
-  ) {
-    console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
+    return 'Player';
   } else {
+    return 'Computer';
+  }
+}
+
+function playRound(playerSelection, computerSelection) {
+  let result = getResult();
+  if ((result = 'Tie')) {
     console.log(`${playerSelection} & ${computerSelection}, it's a tie!`);
+  } else if ((result = 'Player')) {
+    console.log(`You won! ${playerSelection} beats ${computerSelection}`);
+  } else {
+    console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
   }
 }
 
